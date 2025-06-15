@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SIST - Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="https://sist.sathyabama.ac.in/sist_ese_may_2025/img/sist.ico">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .login-container {
+      margin-top: 100px;
+    }
+    .card {
+      border-radius: 10px;
+    }
+    .sist-logo {
+      height: 50px;
+      width: 50px;
+    }
+    .header-text {
+      color: #831238;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container login-container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="text-center mb-4">
+        <img src="https://sist.sathyabama.ac.in/sist_ese_may_2025/img/sist.jpg" alt="SIST Logo" class="sist-logo">
+        <h3 class="header-text mt-2">SATHYABAMA</h3>
+        <p>INSTITUTE OF SCIENCE AND TECHNOLOGY</p>
+      </div>
+      <div class="card shadow">
+        <div class="card-body">
+          <h4 class="card-title text-center mb-4">Login</h4>
+
+          <!-- FLASH MESSAGE BLOCK -->
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+
+          <!-- FORM STARTS -->
+          <form method="POST">
+            <div class="form-group">
+              <label for="regNo">Register Number</label>
+              <input type="text" class="form-control" id="regNo" name="regNo" placeholder="Enter your register number" required>
+            </div>
+            <div class="form-group">
+              <label for="pass">Password</label>
+              <input type="password" class="form-control" id="pass" name="pass" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
