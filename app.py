@@ -7,31 +7,31 @@ app.secret_key = 'any_secret_key_here'
 # Setup logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Hardcoded credentials for demo
+# Hardcoded credentials (Register No. and DOB)
 VALID_REG = '41110531'
-VALID_PASS = 'password'
+VALID_DOB = '09/04/2004'  # Format must match exactly
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        reg = request.form.get('regNo', '').strip()
-        pwd = request.form.get('pass', '').strip()
+        regno = request.form.get('regno', '').strip()
+        dob = request.form.get('dob', '').strip()
 
-        logging.debug(f"User submitted: regNo={reg}, password={pwd}")
+        logging.debug(f"User submitted: regno={regno}, dob={dob}")
 
-        if reg == VALID_REG and pwd == VALID_PASS:
-            logging.debug("Login successful")
+        if regno == VALID_REG and dob == VALID_DOB:
+            logging.debug("✅ Login successful")
             return redirect(url_for('result'))
         else:
-            logging.debug("Login failed: Invalid credentials")
-            flash("Invalid Register Number or Password", "danger")
+            logging.debug("❌ Login failed: Invalid credentials")
+            flash("Invalid Register Number or Date of Birth", "danger")
             return redirect(url_for('login'))
 
     return render_template('login.html')
 
 @app.route('/result')
 def result():
-    logging.debug("Reached /result page")
+    logging.debug("📄 Reached /result page")
     return render_template('index.html')
 
 if __name__ == '__main__':
